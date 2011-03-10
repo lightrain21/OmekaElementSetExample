@@ -30,7 +30,40 @@ class OmekaElementSetExample
     const ELEMENT_SET_DESCRIPTION = 'Add your element set description.';
     
     /**
+     * Define all the elements associated with shiny new element set. Each
+     * element can be defined either as a single string for the element set 
+     * name, or as array.
      *
+     * Element as string:
+     *
+     * <code>
+     *     'Element Name'
+     * </code>
+     * 
+     * Element as array:
+     *
+     * <code> 
+     * array(
+     *     'name'           => [(string) name, required], 
+     *     'description'    => [(string) description, optional], 
+     *     'record_type'    => [(string) record type name, optional], 
+     *     'data_type'      => [(string) data type name, optional], 
+     *     'record_type_id' => [(int) record type id, optional],
+     *     'data_type_id'   => [(int) data type id, optional]
+     * ) 
+     * </code>
+     *
+     * Example that adds an element as a string and one as an array:
+     *
+     * <code> 
+     * array(
+     *     'name'           => 'Element One Name', 
+     *     'description'    => 'A description for Element One', 
+     *     'record_type'    => 'Item', 
+     *     'data_type'      => 'Tiny Text', 
+     * ),
+     * 'Element Two Name'
+     * </code>
      *
      * @var array
      */
@@ -46,7 +79,7 @@ class OmekaElementSetExample
             'description'    => 'Description of Second Element',
             'record_type'    => 'Item',
             'data_type'      => 'Tiny Text'
-        )
+        ),
     );
     
     /**
