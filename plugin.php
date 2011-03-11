@@ -92,14 +92,14 @@ class OmekaElementSetExample
      * @uses get_db()
      */
     public static function install()
-    {
-        $db = get_db();
-        
+    {        
         /**
-         * If Omeka already has an element set with the same name as ours, stop
-         * installation and throw an exception.
+         * Check the ElementSet table in our Omeka database to see whether
+         * Omeka already has an element set with the same name as ours. If it
+         * does, stop the installation and throw an exception. We don't want to
+         * overwrite existing element sets!
          */
-        if ($db->getTable('ElementSet')->findByName(self::ELEMENT_SET_NAME)) {
+        if (get_db()->getTable('ElementSet')->findByName(self::ELEMENT_SET_NAME)) {
             throw new Exception('An element set by the name "' . self::ELEMENT_SET_NAME . '" already exists. You must delete that element set to install this plugin.');
         }
         
