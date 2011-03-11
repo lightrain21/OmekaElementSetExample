@@ -84,7 +84,9 @@ class OmekaElementSetExample
     );
     
     /**
-     * Installs the OmekaElementSetExample plugin.
+     * Installs the OmekaElementSetExample plugin. Gets data about our element
+     * set from our class constants and $element variable to insert our element
+     * set.
      *
      * @uses insert_element_set()
      * @uses get_db()
@@ -93,6 +95,10 @@ class OmekaElementSetExample
     {
         $db = get_db();
         
+        /**
+         * If Omeka already has an element set with the same name as ours, stop
+         * installation and throw an exception.
+         */
         if ($db->getTable('ElementSet')->findByName(self::ELEMENT_SET_NAME)) {
             throw new Exception('An element set by the name "' . self::ELEMENT_SET_NAME . '" already exists. You must delete that element set to install this plugin.');
         }
@@ -119,7 +125,7 @@ class OmekaElementSetExample
      * element set created during installation.
      */
     public static function uninstall()
-    {        
+    {
         if ($elementSet = get_db()->getTable('ElementSet')->findByName(self::ELEMENT_SET_NAME)) {
             $elementSet->delete();
         }
