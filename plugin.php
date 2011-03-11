@@ -8,6 +8,7 @@
 
 add_plugin_hook('install', 'OmekaElementSetExample::install');
 add_plugin_hook('uninstall', 'OmekaElementSetExample::uninstall');
+add_plugin_hook('admin_append_to_plugin_uninstall_message', 'OmekaElementSetExample::plugin_uninstall_message');
 
 /**
  * An example plugin for creating an element set in Omeka. This plugin should
@@ -122,5 +123,13 @@ class OmekaElementSetExample
         if ($elementSet = get_db()->getTable('ElementSet')->findByName(self::ELEMENT_SET_NAME)) {
             $elementSet->delete();
         }
+    }
+    
+    /**
+     * Appends a warning message to the uninstall confirmation page.
+     */
+    public static function plugin_uninstall_message()
+    {
+        echo '<p><strong>Warning</strong>: This will permanently delete the "' . self::ELEMENT_SET_NAME . '" element set and all its associated metadata. You may deactivate this plugin if you do not want to lose data.</p>';
     }
 }
